@@ -9,7 +9,7 @@ type ButtonProps = {
 
 export default function Button({ children, link, className }: ButtonProps) {
   return (
-    <>
+    <div className='flex flex-row'>
       {link ? (
         <Link href={link}>
           <div className={className}>{children}</div>
@@ -17,6 +17,6 @@ export default function Button({ children, link, className }: ButtonProps) {
       ) : (
         <div className={className}>{children}</div>
       )}
-    </>
+    </div>
   );
 }
