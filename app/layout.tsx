@@ -18,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <img src='/banner.png' />
+        <div className='h-80px max-w-screen-1920'>
+          <img src='/banner.png' />
+        </div>
         <NavBar />
         {children}
       </body>
