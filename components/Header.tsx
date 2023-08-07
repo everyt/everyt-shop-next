@@ -15,24 +15,29 @@ function Header() {
         />
       </div>
       <div>
-        <div className='ml-16 mt-8 w-48% h-9 rounded-md border border-gray-700'>
+        <div className='ml-16 mt-7 w-48% h-10 rounded-md border border-gray-700'>
           <input
             className='mt-0 m-1 ml-6 pe-60 outline-none text-sm text-slate-500'
             type='text'
             placeholder='찾고 싶은 상품을 검색해보세요!'
           />
           <button
-            className='ps-3 pe-3 py-9px rounded bg-gray-700 text-slate-50'
+            className='ps-3 pe-3 py-9px pb-0.8rem rounded-r bg-gray-700 text-slate-50'
             type='submit'
           >
             <FaSearch />
           </button>
           <br />
         </div>
-        <p className='mt-1 ml-16 text-xs'>
-          아메리카노 | 로지텍 G-PRO SUPER LIGHT | 애플워치SE 스트랩 | 아이폰 13
-          미니 케이스
-        </p>
+        <div className='text-slate-600 mt-1 ml-16 text-xs flex flex-row justify-start'>
+          아메리카노
+          <p className='text-slate-300 mx-1'>|</p>
+          로지텍 G-PRO SUPER LIGHT
+          <p className='text-slate-300 mx-1'>|</p>
+          애플워치SE 스트랩
+          <p className='text-slate-300 mx-1'>|</p>
+          아이폰 13 미니 케이스
+        </div>
       </div>
       <img
         className='ml-20 h-70px w-70px'

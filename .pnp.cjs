@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@headlessui/react", "virtual:98ca95b62b9a870521543766cbc66901bf775b9201264fef4bacad887e6ddc43c212de834ffdcb9c078d98797f9d247477a5a7e662e74c54aa453c277aef847c#npm:1.7.16"],\
             ["@types/node", "npm:20.4.8"],\
             ["@types/react", "npm:18.2.18"],\
             ["@types/react-dom", "npm:18.2.7"],\
@@ -128,6 +129,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@eslint-js-npm-8.46.0-3cfe1ee88b-7aed479832.zip/node_modules/@eslint/js/",\
           "packageDependencies": [\
             ["@eslint/js", "npm:8.46.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@headlessui/react", [\
+        ["npm:1.7.16", {\
+          "packageLocation": "./.yarn/cache/@headlessui-react-npm-1.7.16-039d64d731-85844c96c7.zip/node_modules/@headlessui/react/",\
+          "packageDependencies": [\
+            ["@headlessui/react", "npm:1.7.16"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:98ca95b62b9a870521543766cbc66901bf775b9201264fef4bacad887e6ddc43c212de834ffdcb9c078d98797f9d247477a5a7e662e74c54aa453c277aef847c#npm:1.7.16", {\
+          "packageLocation": "./.yarn/__virtual__/@headlessui-react-virtual-bad9602de3/0/cache/@headlessui-react-npm-1.7.16-039d64d731-85844c96c7.zip/node_modules/@headlessui/react/",\
+          "packageDependencies": [\
+            ["@headlessui/react", "virtual:98ca95b62b9a870521543766cbc66901bf775b9201264fef4bacad887e6ddc43c212de834ffdcb9c078d98797f9d247477a5a7e662e74c54aa453c277aef847c#npm:1.7.16"],\
+            ["@types/react", "npm:18.2.18"],\
+            ["@types/react-dom", "npm:18.2.7"],\
+            ["client-only", "npm:0.0.1"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:98ca95b62b9a870521543766cbc66901bf775b9201264fef4bacad887e6ddc43c212de834ffdcb9c078d98797f9d247477a5a7e662e74c54aa453c277aef847c#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1990,6 +2018,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["everyt-shop-next", "workspace:."],\
+            ["@headlessui/react", "virtual:98ca95b62b9a870521543766cbc66901bf775b9201264fef4bacad887e6ddc43c212de834ffdcb9c078d98797f9d247477a5a7e662e74c54aa453c277aef847c#npm:1.7.16"],\
             ["@types/node", "npm:20.4.8"],\
             ["@types/react", "npm:18.2.18"],\
             ["@types/react-dom", "npm:18.2.7"],\

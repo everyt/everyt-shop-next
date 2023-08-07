@@ -1,13 +1,22 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Button from './Button';
 import { BiLogIn } from 'react-icons/bi';
 import { FaRegAddressBook, FaRegPaperPlane } from 'react-icons/fa';
 import { MdOutlineSell } from 'react-icons/md';
+import { Listbox } from '@headlessui/react';
+
+const language = [
+  { id: 1, language: 'Korean', img: '/Flag_Korean.svg' },
+  { id: 2, language: 'English', img: '/Flag_Korean.svg' },
+];
 
 export default function NavBar() {
+  const [selectedLanguage, setSelectedLanguage] = useState(language[0]);
   return (
     <div className='bg-slate-100 p-2 flex flex-row justify-center'>
-      <div className='w-1200px text-xs flex flex-row justify-end '>
+      <div className='text-slate-600 w-1200px text-xs flex flex-row justify-end '>
         <Button
           className='login'
           link='/login'
@@ -41,12 +50,22 @@ export default function NavBar() {
         <MdOutlineSell className='ml-1' />
         <p className='mx-1'>|</p>
         <Button className='language mr-1'>한국어</Button>
-        <img
-          className='mr-7'
-          src='/Flag_of_South_Korea.svg'
-          height='20'
-          width='20'
-        />
+        <Listbox
+          value={selectedLanguage}
+          onChange={setSelectedLanguage}
+        >
+          <Listbox.Button>
+            <div className='flex flex-col'>
+              {selectedLanguage.language}
+              <img
+                className='mr-7'
+                src={selectedLanguage.img}
+                height='20'
+                width='20'
+              />
+            </div>
+          </Listbox.Button>
+        </Listbox>
       </div>
     </div>
   );
