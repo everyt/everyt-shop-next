@@ -15,14 +15,18 @@ function Item({ children, img, name, price, category }: ItemProps) {
         {category}
       </p>
       <div className='pb-2 after:absolute after:bg-emerald-300 after:pr-5 after:h-2'>
-        <img className='rounded-t-2xl flex-auto' src={img} alt='Item'></img>
+        <img
+          className='rounded-t-2xl flex-auto'
+          src={img}
+          alt='Item'
+        ></img>
       </div>
       <div className='item-info h-24 rounded-b-2xl flex justify-center content-center bg-white'>
         <div className='w-44 h-20 mt-1'>
           <p className='ml-1 item-name text-xl text-neutral-700 font-LINERg'>
             {name}
           </p>
-          <p className='item-text text-sm text-neutral-500'>{children}</p>
+          <p className='h-10 item-text text-sm text-neutral-500'>{children}</p>
           <p className='text-end item-price text-base text-neutral-600'>
             <span className='text-neutral-500'>{price}</span>￦
           </p>
