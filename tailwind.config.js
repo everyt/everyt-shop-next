@@ -14,6 +14,7 @@ module.exports = {
         '70px': '70px',
         '90px': '90px',
         '100px': '100px',
+        '9.5': '2.35rem',
       },
       width: {
         '70px': '70px',
@@ -21,10 +22,12 @@ module.exports = {
         '200px': '200px',
         '1000px': '1000px',
         '1200px': '1200px',
+        '1920px': '1920px',
       },
       padding: {
         '9px': '9px',
         '0.8rem': '0.8rem',
+        '0.9rem': '0.9rem',
       },
       margin: {
         26: '6.5rem',

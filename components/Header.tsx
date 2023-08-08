@@ -9,7 +9,7 @@ function Header() {
         <Image
           className='w-200px h-70px'
           src='/Logo.png'
-          alt='Next.js Logo'
+          alt='NEXTEA Logo'
           width={450}
           height={150}
         />
