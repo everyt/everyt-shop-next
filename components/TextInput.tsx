@@ -4,7 +4,7 @@ import { useState, ChangeEvent, KeyboardEvent } from 'react';
 type Props = {
   className?: string;
   placeholder?: string;
-  onChange: ({ value }: { value: string }) => void;
+  onChange: any //({ value }: { value: string }) => void;
   onFocus?: () => void;
   onBlur?: () => void;
   onKeyDown?: (ev: KeyboardEvent<HTMLInputElement>) => void;

@@ -5,6 +5,8 @@ import { FaSearch } from 'react-icons/fa';
 import TextInput from '../TextInput';
 
 function Header() {
+  const handleChange = () => {
+  }
   return (
     <div className='flex flex-row justify-center bg-white w-100vw h-28'>
       <div className='flex flex-row justify-start my-6 mt-2 ml-16 w-1200px'>
@@ -22,7 +24,7 @@ function Header() {
             <TextInput
               className='m-1 mt-0 ml-6 text-sm w-100 pe-5 text-slate-500'
               placeholder='찾고 계신 상품이 있나요?'
-              onChange={(text) => {}}
+              onChange={handleChange}
             />
             <button
               className='ps-3 pe-3 py-9px pb-0.8rem rounded-r bg-gray-700 text-slate-50'
