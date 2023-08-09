@@ -9,10 +9,7 @@ export default function Category() {
   return (
     <div className='w-100vw bg-white flex flex-row justify-center'>
       <div className='my-2 w-1000px flex flex-row justify-start'>
-        <Menu
-          as='div'
-          className='z-50 relative inline-block text-left'
-        >
+        <Menu as='div' className='z-50 relative inline-block text-left'>
           <Menu.Button className='inline-flex w-full justify-center rounded-md hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
             <Button className='font-LINEBd flex content-center'>
               <div className='mt-0.5 mx-4'>
