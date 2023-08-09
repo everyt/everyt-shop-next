@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  plugins: [require('./plugins/SignUpIcon')],
   theme: {
     extend: {
       height: {
@@ -23,6 +26,8 @@ module.exports = {
         '220px': '220px',
         '230px': '230px',
         '231px': '231px',
+        '350px': '350px',
+        '400px': '400px',
         '800px': '800px',
         '900px': '900px',
         '1000px': '1000px',
@@ -38,6 +43,7 @@ module.exports = {
       },
       margin: {
         26: '6.5rem',
+        30: '7.5rem',
         37: '9.125rem',
         38: '9.25rem',
       },
@@ -59,5 +65,4 @@ module.exports = {
       },
     },
   },
-  plugins: [],
 };

@@ -1,6 +1,6 @@
-import NavBar from '@Components/NavBar';
-import Header from '@Components/Header';
-import Category from '@Components/Category';
+import NavBar from '@Components/Layout/NavBar';
+import Header from '@Components/Layout/Header';
+import Category from '@Components/Layout/Category';
 
 export default function RootLayout({
   children,

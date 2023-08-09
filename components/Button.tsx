@@ -1,14 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 
-type ButtonProps = {
+type Props = {
   children: React.ReactNode;
   className: string;
-  icon?: string;
   link?: string;
 };
 
-export default function Button({ children, link, className }: ButtonProps) {
+export default function Button({ children, link, className }: Props) {
   return (
     <div>
       {link ? (
