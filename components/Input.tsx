@@ -1,10 +1,11 @@
-'use client';
-import { useState, ChangeEvent, KeyboardEvent } from 'react';
+import { KeyboardEvent } from 'react';
 
 type Props = {
+  type: string;
   className?: string;
   placeholder?: string;
-  onChange: any //({ value }: { value: string }) => void;
+  onChange?: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
   onFocus?: () => void;
   onBlur?: () => void;
   onKeyDown?: (ev: KeyboardEvent<HTMLInputElement>) => void;
@@ -13,32 +14,23 @@ type Props = {
 };
 
 export default function TextInput({
+  type,
   className,
   placeholder,
   onChange,
+  onClick,
   onFocus,
   onBlur,
   onKeyDown,
-  value = '',
   disabled = false,
 }: Props) {
-  const [text, setText] = useState(value);
-
-  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
-    const value = ev.target.value;
-    setText(value);
-    onChange({ value });
-  };
-
-  className = className + ' outline-none';
-
   return (
     <input
-      type='text'
-      value={text}
+      type={type}
       className={className}
       placeholder={placeholder}
-      onChange={handleChange}
+      onChange={onChange}
+      onClick={onClick}
       onFocus={onFocus}
       onBlur={onBlur}
       onKeyDown={onKeyDown}

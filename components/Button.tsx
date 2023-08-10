@@ -5,9 +5,10 @@ type Props = {
   children: React.ReactNode;
   className: string;
   link?: string;
+  onClick?: () => void;
 };
 
-export default function Button({ children, link, className }: Props) {
+export default function Button({ children, link, className, onClick }: Props) {
   return (
     <div>
       {link ? (
@@ -15,7 +16,12 @@ export default function Button({ children, link, className }: Props) {
           <div className={className}>{children}</div>
         </Link>
       ) : (
-        <div className={className}>{children}</div>
+        <div
+          className={className}
+          onClick={onClick}
+        >
+          {children}
+        </div>
       )}
     </div>
   );

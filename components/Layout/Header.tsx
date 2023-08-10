@@ -2,17 +2,16 @@
 import React from 'react';
 import Image from 'next/image';
 import { FaSearch } from 'react-icons/fa';
-import TextInput from '../TextInput';
+import TextInput from '../Input';
 
 function Header() {
-  const handleChange = () => {
-  }
+  const handleChange = () => {};
   return (
-    <div className='flex flex-row justify-center bg-white w-100vw h-28'>
-      <div className='flex flex-row justify-start my-6 mt-2 ml-16 w-1200px'>
+    <div className='w-100vw flex h-28 flex-row justify-center bg-white'>
+      <div className='my-6 ml-16 mt-2 flex w-1200px flex-row justify-start'>
         <div className='ml-28 h-100px'>
           <Image
-            className='w-200px h-70px'
+            className='h-70px w-200px'
             src='/Logo.png'
             alt='NEXTEA Logo'
             width={450}
@@ -20,21 +19,22 @@ function Header() {
           />
         </div>
         <div>
-          <div className='ml-16 mt-7 w-48% h-10 rounded-md border border-gray-700'>
+          <div className='w-48% ml-16 mt-7 h-10 rounded-md border border-gray-700'>
             <TextInput
-              className='m-1 mt-0 ml-6 text-sm w-100 pe-5 text-slate-500'
+              type='text'
+              className='m-1 ml-6 mt-0 w-100 pe-5 text-sm text-slate-500'
               placeholder='찾고 계신 상품이 있나요?'
               onChange={handleChange}
             />
             <button
-              className='ps-3 pe-3 py-9px pb-0.8rem rounded-r bg-gray-700 text-slate-50'
+              className='rounded-r bg-gray-700 py-9px pb-0.8rem pe-3 ps-3 text-slate-50'
               type='submit'
             >
               <FaSearch />
             </button>
             <br />
           </div>
-          <div className='flex flex-row justify-start mt-1 ml-16 text-xs text-slate-600'>
+          <div className='ml-16 mt-1 flex flex-row justify-start text-xs text-slate-600'>
             아메리카노
             <p className='mx-1 text-slate-300'>|</p>
             로지텍 G-PRO SUPER LIGHT
