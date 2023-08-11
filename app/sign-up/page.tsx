@@ -42,18 +42,14 @@ export default function SignUp() {
   const SignUp = () => {
     checkSignUp() &&
       axios
-        .post('http://localhost:8080/sign-up', {
+        .post('/user', {
           userEmail: email,
           userNickname: nickname,
           userHash: SHA256(password).toString(),
           userPhonenumber: phonenumber,
         })
         .then((response) => {
-          if (response.data.code === 0) {
-            console.log('SignUp: Response.data.code === 0;');
-          } else {
-            console.log('SignUp: Response.data.code !== 0;');
-          }
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);
