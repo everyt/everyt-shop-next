@@ -42,7 +42,7 @@ export default function SignUp() {
   const SignUp = () => {
     checkSignUp() &&
       axios
-        .post('/user', {
+        .post('/api/sign-up', {
           userEmail: email,
           userNickname: nickname,
           userHash: SHA256(password).toString(),
