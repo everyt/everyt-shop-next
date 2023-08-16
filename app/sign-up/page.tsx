@@ -4,26 +4,25 @@ import { ChangeEvent, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { MdOutlineEmail } from 'react-icons/md';
 import { RiAccountCircleLine, RiLockPasswordLine, RiLockPasswordFill } from 'react-icons/ri';
-import { LuSmartphone } from 'react-icons/lu';
+// import { LuSmartphone } from 'react-icons/lu';
 import { GrFormViewHide, GrFormView } from 'react-icons/gr';
 import Icon from '@Components/Icon';
 import TextInput from '@Components/Input';
 import Button from '@Components/Button';
 import axios from 'axios';
-import { SHA256 } from 'crypto-js';
 
 export default function SignUp() {
   const [email, setEmail] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [checkingpassword, setCheckingpassword] = useState<string>('');
-  const [phonenumber, setPhonenumber] = useState<string>('');
+  // const [phonenumber, setPhonenumber] = useState<string>('');
 
   const [clickedEmail, setClickedEmail] = useState<boolean>(false);
   const [clickedNickname, setClickedNickname] = useState<boolean>(false);
   const [clickedPassword, setClickedPassword] = useState<boolean>(false);
   const [clickedCheckingpassword, setClickedCheckingpassword] = useState<boolean>(false);
-  const [clickedPhonenumber, setClickedPhonenumber] = useState<boolean>(false);
+  // const [clickedPhonenumber, setClickedPhonenumber] = useState<boolean>(false);
 
   const [passwordInputType, setPasswordInputType] = useState<string>('password');
   const [checkingPasswordInputType, setCheckingPasswordInputType] = useState<string>('password');
@@ -35,18 +34,18 @@ export default function SignUp() {
     checkEmail() && setClickedEmail(true);
     checkPassword() && setClickedPassword(true);
     checkNickname() && setClickedNickname(true);
-    checkPhonenumber() && setClickedPhonenumber(true);
-    return !checkEmail() && !checkPassword() && !checkNickname() && !checkPhonenumber() ? true : false;
+    // checkPhonenumber() && setClickedPhonenumber(true);
+    return !checkEmail() && !checkPassword() && !checkNickname() ? true : false;
   };
 
   const SignUp = () => {
     checkSignUp() &&
       axios
-        .post('/api/sign-up', {
-          userEmail: email,
-          userNickname: nickname,
-          userHash: SHA256(password).toString(),
-          userPhonenumber: phonenumber,
+        .post('/api/v1/user/sign-up', {
+          email: email,
+          nickname: nickname,
+          password: password,
+          authority: 'ROLE_USER',
         })
         .then((response) => {
           console.log(response);
@@ -68,9 +67,9 @@ export default function SignUp() {
   const handleChangeCheckingpassword = (ev: ChangeEvent<HTMLInputElement>) => {
     setCheckingpassword(ev.target.value);
   };
-  const handleChangePhonenumber = (ev: ChangeEvent<HTMLInputElement>) => {
-    setPhonenumber(ev.target.value);
-  };
+  // const handleChangePhonenumber = (ev: ChangeEvent<HTMLInputElement>) => {
+  //   setPhonenumber(ev.target.value);
+  // };
 
   const handleShowPassword = () => {
     if (passwordInputType == 'password') {
@@ -94,7 +93,7 @@ export default function SignUp() {
   const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
   const nicknameRegEx = /^[A-Za-z0-9가-힣]{3,8}$/;
   const passwordRegEx = /^(?=.*[!@#$%^&*+=-])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,16}$/;
-  const phonenumberRegEx = /^01([0|1|6|7|8|9])-?(\d{3,4})-?(\d{4})$/;
+  // const phonenumberRegEx = /^01([0|1|6|7|8|9])-?(\d{3,4})-?(\d{4})$/;
 
   const checkEmail = () => {
     return emailRegEx.test(email) ? false : true;
@@ -108,9 +107,9 @@ export default function SignUp() {
   const checkCheckingpassword = () => {
     return password === checkingpassword && password.length > 4 ? false : true;
   };
-  const checkPhonenumber = () => {
-    return phonenumberRegEx.test(phonenumber) ? false : true;
-  };
+  // const checkPhonenumber = () => {
+  //   return phonenumberRegEx.test(phonenumber) ? false : true;
+  // };
 
   return (
     //TODO: 회원가입화면 띄우기
@@ -245,7 +244,7 @@ export default function SignUp() {
               <span>비밀번호가 일치하지 않습니다.</span>
             </div>
           )}
-          {/** -------------------------------------------------------- */}
+          {/** --------------------------------------------------------
           <div className='sign-up-input-container'>
             <div className='sign-up-icon-wrap'>
               <Icon className='sign-up-icon'>
@@ -271,7 +270,7 @@ export default function SignUp() {
               <span>전화번호를 입력해 주세요. 하이픈(-)을 포함해서요.</span>
             </div>
           )}
-          {/** -------------------------------------------------------- */}
+          -------------------------------------------------------- */}
           <Button
             className='m-auto mt-4 w-435px cursor-pointer border-2 border-emerald-300 bg-white py-3 text-center'
             onClick={SignUp}
