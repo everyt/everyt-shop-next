@@ -1,10 +1,15 @@
+import { Suspense } from 'react';
 import Item from '@Components/Item';
 
 export default function Shop() {
   return (
     <div className='w-100vw flex flex-col content-center justify-start bg-white'>
       <div className='w-100vw flex flex-row justify-center bg-neutral-100'>
+<<<<<<< HEAD
         <div className='flex w-1000px flex-row flex-wrap content-between'>
+=======
+        <div className='flex w-1000px flex-row flex-wrap content-start'>
+>>>>>>> e6efeb885b8d3b7b0230ddf1cf2e2302815b5371
           <Item
             name='앙념통닭'
             price='21,000'

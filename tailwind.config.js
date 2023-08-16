@@ -66,6 +66,23 @@ module.exports = {
       rotate: {
         m45: '-45deg',
       },
+      minWidth: {
+        screen: '100vw',
+      },
+      keyframes: {
+        slidein: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scaleX(16)' },
+        },
+        slideout: {
+          '0%': { transform: 'scaleX(16)' },
+          '100%': { transform: 'scaleX(1)' },
+        },
+      },
+      animation: {
+        slidein: 'slidein 0.5s forwards',
+        slideout: 'slideout 0.5s forwards',
+      },
     },
   },
 };

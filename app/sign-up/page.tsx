@@ -10,7 +10,6 @@ import Icon from '@Components/Icon';
 import TextInput from '@Components/Input';
 import Button from '@Components/Button';
 import axios from 'axios';
-import { SHA256 } from 'crypto-js';
 
 export default function SignUp() {
   const [email, setEmail] = useState<string>('');
@@ -42,22 +41,14 @@ export default function SignUp() {
     let time = new Date();
     checkSignUp() &&
       axios
-        .post('/api/user', {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          userEmail: email,
-          userNickname: nickname,
-          userPassword: SHA256(password).toString(),
-          userAppendTime: time.toLocaleString('en-US'),
-          userUpdateTime: '',
+        .post('/api/v1/user/sign-up', {
+          email: email,
+          nickname: nickname,
+          password: password,
+          authority: 'ROLE_USER',
         })
         .then((response) => {
-          if (response.data.code === 0) {
-            console.log('SignUp: Response.data.code === 0;');
-          } else {
-            console.log('SignUp: Response.data.code !== 0;');
-          }
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -253,7 +244,7 @@ export default function SignUp() {
               <span>비밀번호가 일치하지 않습니다.</span>
             </div>
           )}
-          {/** -------------------------------------------------------- 
+          {/** --------------------------------------------------------
           <div className='sign-up-input-container'>
             <div className='sign-up-icon-wrap'>
               <Icon className='sign-up-icon'>
