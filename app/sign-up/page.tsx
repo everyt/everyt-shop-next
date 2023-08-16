@@ -37,8 +37,7 @@ export default function SignUp() {
     return !checkEmail() && !checkPassword() && !checkNickname() ? true : false;
   };
 
-  const SignUp = () => {
-    let time = new Date();
+  const signUp = () => {
     checkSignUp() &&
       axios
         .post('/api/v1/user/sign-up', {
@@ -139,7 +138,7 @@ export default function SignUp() {
                 onChange={(ev) => {
                   handleChangeEmail(ev);
                 }}
-                onClick={() => {
+                onFocus={() => {
                   setClickedEmail(true);
                 }}
               ></TextInput>
@@ -165,7 +164,7 @@ export default function SignUp() {
                 onChange={(ev) => {
                   handleChangeNickname(ev);
                 }}
-                onClick={() => {
+                onFocus={() => {
                   setClickedNickname(true);
                 }}
               ></TextInput>
@@ -199,7 +198,7 @@ export default function SignUp() {
                 onChange={(ev) => {
                   handleChangePassword(ev);
                 }}
-                onClick={() => {
+                onFocus={() => {
                   setClickedPassword(true);
                 }}
               ></TextInput>
@@ -233,7 +232,7 @@ export default function SignUp() {
                 onChange={(ev) => {
                   handleChangeCheckingpassword(ev);
                 }}
-                onClick={() => {
+                onFocus={() => {
                   setClickedCheckingpassword(true);
                 }}
               ></TextInput>
@@ -273,7 +272,7 @@ export default function SignUp() {
           -------------------------------------------------------- */}
           <Button
             className='m-auto mt-4 w-435px cursor-pointer border-2 border-emerald-300 bg-white py-3 text-center'
-            onClick={SignUp}
+            onClick={signUp}
           >
             회원가입
           </Button>

@@ -1,14 +1,72 @@
-import React from 'react';
+'use client';
+import { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import { IconContext } from 'react-icons';
 import { MdOutlineEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import { GrFormViewHide, GrFormView } from 'react-icons/gr';
 import Icon from '@Components/Icon';
 import TextInput from '@Components/Input';
 import Button from '@Components/Button';
 import axios from 'axios';
 
 export default function page() {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const [clickedEmail, setClickedEmail] = useState<boolean>(false);
+  const [clickedPassword, setClickedPassword] = useState<boolean>(false);
+
+  const [passwordInputType, setPasswordInputType] = useState<string>('password');
+  const [passwordShowIcon, setPasswordShowIcon] = useState<React.ReactNode>(<GrFormViewHide />);
+
+  const checkLogin = () => {
+    checkEmail() && setClickedEmail(true);
+    checkPassword() && setClickedPassword(true);
+    return !checkEmail() && !checkPassword() ? true : false;
+  };
+
+  const Login = () => {
+    checkLogin() &&
+      axios
+        .post('/api/v1/user/login', {
+          email: email,
+          password: password,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  };
+
+  const handleChangeEmail = (ev: ChangeEvent<HTMLInputElement>) => {
+    setEmail(ev.target.value);
+  };
+  const handleChangePassword = (ev: ChangeEvent<HTMLInputElement>) => {
+    setPassword(ev.target.value);
+  };
+
+  const handleShowPassword = () => {
+    if (passwordInputType == 'password') {
+      setPasswordInputType('text');
+      setPasswordShowIcon(<GrFormView />);
+    } else {
+      setPasswordInputType('password');
+      setPasswordShowIcon(<GrFormViewHide />);
+    }
+  };
+
+  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
+
+  const checkEmail = () => {
+    return emailRegEx.test(email) ? false : true;
+  };
+  const checkPassword = () => {
+    return password.length > 0 ? false : true;
+  };
+
   return (
     <>
       <div className='w-100wv flex flex-row justify-center'>
@@ -20,7 +78,7 @@ export default function page() {
             width={450}
             height={150}
           />
-          <p className='mb-4 text-center'>회원가입을 위한 정보를 입력해주세요.</p>
+          <p className='mb-4 text-center text-xl text-emerald-400'>로그인</p>
           {/** -------------------------------------------------------- */}
           <div className='sign-up-input-container'>
             <div className='sign-up-icon-wrap'>
@@ -36,7 +94,7 @@ export default function page() {
                 onChange={(ev) => {
                   handleChangeEmail(ev);
                 }}
-                onClick={() => {
+                onFocus={() => {
                   setClickedEmail(true);
                 }}
               ></TextInput>
@@ -44,7 +102,7 @@ export default function page() {
           </div>
           {checkEmail() && clickedEmail === true && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
-              <span>이메일 주소를 입력해주세요.</span>
+              <span>아이디(이메일)는 이메일 형식으로 입력해주세요.</span>
             </div>
           )}
           {/** -------------------------------------------------------- */}
@@ -70,7 +128,7 @@ export default function page() {
                 onChange={(ev) => {
                   handleChangePassword(ev);
                 }}
-                onClick={() => {
+                onFocus={() => {
                   setClickedPassword(true);
                 }}
               ></TextInput>
@@ -78,15 +136,15 @@ export default function page() {
           </div>
           {checkPassword() && clickedPassword === true && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
-              <span>영소문자, 영대문자, 숫자, 특수문자를 포함해 4~16자리로 입력해주세요.</span>
+              <span>비밀번호를 입력해 주세요.</span>
             </div>
           )}
-          -------------------------------------------------------- */}
+          {/** -------------------------------------------------------- */}
           <Button
             className='m-auto mt-4 w-435px cursor-pointer border-2 border-emerald-300 bg-white py-3 text-center'
-            onClick={SignUp}
+            onClick={Login}
           >
-            회원가입
+            로그인
           </Button>
         </div>
       </div>

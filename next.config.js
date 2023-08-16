@@ -11,7 +11,6 @@ const nextConfig = {
     ];
   },
   async rewrites() {
-<<<<<<< HEAD
     return [
       {
         source: '/api/:path*',
