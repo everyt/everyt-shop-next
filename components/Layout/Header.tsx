@@ -11,6 +11,7 @@ function Header() {
       <div className='my-6 ml-16 mt-2 flex w-1200px flex-row justify-start'>
         <div className='ml-28 h-100px'>
           <Image
+            priority={true}
             className='h-70px w-200px'
             src='/Logo.png'
             alt='NEXTEA Logo'
