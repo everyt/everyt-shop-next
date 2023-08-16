@@ -66,6 +66,9 @@ module.exports = {
       rotate: {
         m45: '-45deg',
       },
+      minWidth: {
+        screen: '100vw',
+      },
     },
   },
 };

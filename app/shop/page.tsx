@@ -1,10 +1,11 @@
+import { Suspense } from 'react';
 import Item from '@Components/Item';
 
 export default function Shop() {
   return (
-    <div className='flex flex-col content-center justify-start bg-white w-100vw'>
-      <div className='flex flex-row justify-center w-100vw bg-neutral-100'>
-        <div className='flex flex-row flex-wrap content-start w-1000px'>
+    <div className='w-100vw flex flex-col content-center justify-start bg-white'>
+      <div className='w-100vw flex flex-row justify-center bg-neutral-100'>
+        <div className='flex w-1000px flex-row flex-wrap content-start'>
           <Item
             name='앙념통닭'
             price='21,000'
@@ -37,16 +38,36 @@ export default function Shop() {
           >
             고풍스럽게 튀겨진 조각난 닭 한마리.
           </Item>
-          <Item name='통닭' price='10000' img='/Chicken.png' category='식품'>
+          <Item
+            name='통닭'
+            price='10000'
+            img='/Chicken.png'
+            category='식품'
+          >
             고풍스럽게 튀겨진 조각난 닭 한마리.
           </Item>
-          <Item name='통닭' price='10000' img='/Chicken.png' category='식품'>
+          <Item
+            name='통닭'
+            price='10000'
+            img='/Chicken.png'
+            category='식품'
+          >
             고풍스럽게 튀겨진 조각난 닭 한마리.
           </Item>
-          <Item name='통닭' price='10000' img='/Chicken.png' category='식품'>
+          <Item
+            name='통닭'
+            price='10000'
+            img='/Chicken.png'
+            category='식품'
+          >
             고풍스럽게 튀겨진 조각난 닭 한마리.
           </Item>
-          <Item name='통닭' price='10000' img='/Chicken.png' category='식품'>
+          <Item
+            name='통닭'
+            price='10000'
+            img='/Chicken.png'
+            category='식품'
+          >
             고풍스럽게 튀겨진 조각난 닭 한마리.
           </Item>
         </div>
