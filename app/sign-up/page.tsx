@@ -15,30 +15,30 @@ export default function SignUp() {
   const [email, setEmail] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [checkingpassword, setCheckingpassword] = useState<string>('');
+  const [verifypassword, setVerifypassword] = useState<string>('');
   // const [phonenumber, setPhonenumber] = useState<string>('');
 
-  const [clickedEmail, setClickedEmail] = useState<boolean>(false);
-  const [clickedNickname, setClickedNickname] = useState<boolean>(false);
-  const [clickedPassword, setClickedPassword] = useState<boolean>(false);
-  const [clickedCheckingpassword, setClickedCheckingpassword] = useState<boolean>(false);
-  // const [clickedPhonenumber, setClickedPhonenumber] = useState<boolean>(false);
+  const [focusedEmail, setFocusedEmail] = useState<boolean>(false);
+  const [focusedNickname, setFocusedNickname] = useState<boolean>(false);
+  const [focusedPassword, setFocusedPassword] = useState<boolean>(false);
+  const [focusedVerifypassword, setFocusedVerifypassword] = useState<boolean>(false);
+  // const [focusedPhonenumber, setFocusedPhonenumber] = useState<boolean>(false);
 
   const [passwordInputType, setPasswordInputType] = useState<string>('password');
-  const [checkingPasswordInputType, setCheckingPasswordInputType] = useState<string>('password');
+  const [verifyPasswordInputType, setVerifyPasswordInputType] = useState<string>('password');
   const [passwordShowIcon, setPasswordShowIcon] = useState<React.ReactNode>(<GrFormViewHide />);
-  const [checkingPasswordShowIcon, setCheckingPasswordShowIcon] = useState<React.ReactNode>(<GrFormViewHide />);
+  const [verifyPasswordShowIcon, setVerifyPasswordShowIcon] = useState<React.ReactNode>(<GrFormViewHide />);
 
-  const checkSignUp = () => {
-    checkEmail() && setClickedEmail(true);
-    checkPassword() && setClickedPassword(true);
-    checkNickname() && setClickedNickname(true);
-    // checkPhonenumber() && setClickedPhonenumber(true);
-    return !checkEmail() && !checkPassword() && !checkNickname() ? true : false;
+  const isCorrectSignUp = () => {
+    !isCorrectEmail() && setFocusedEmail(true);
+    !isCorrectPassword() && setFocusedPassword(true);
+    !isCorrectNickname() && setFocusedNickname(true);
+    // isCorrectPhonenumber() && setFocusedPhonenumber(true);
+    return isCorrectEmail() && isCorrectPassword() && isCorrectNickname() ? true : false;
   };
 
   const signUp = () => {
-    checkSignUp() &&
+    isCorrectSignUp() &&
       axios
         .post('/api/v1/user/sign-up', {
           email: email,
@@ -63,15 +63,15 @@ export default function SignUp() {
   const handleChangePassword = (ev: ChangeEvent<HTMLInputElement>) => {
     setPassword(ev.target.value);
   };
-  const handleChangeCheckingpassword = (ev: ChangeEvent<HTMLInputElement>) => {
-    setCheckingpassword(ev.target.value);
+  const handleChangeVerifypassword = (ev: ChangeEvent<HTMLInputElement>) => {
+    setVerifypassword(ev.target.value);
   };
   // const handleChangePhonenumber = (ev: ChangeEvent<HTMLInputElement>) => {
   //   setPhonenumber(ev.target.value);
   // };
 
   const handleShowPassword = () => {
-    if (passwordInputType == 'password') {
+    if (passwordInputType === 'password') {
       setPasswordInputType('text');
       setPasswordShowIcon(<GrFormView />);
     } else {
@@ -79,13 +79,13 @@ export default function SignUp() {
       setPasswordShowIcon(<GrFormViewHide />);
     }
   };
-  const handleShowCheckingPassword = () => {
-    if (checkingPasswordInputType == 'password') {
-      setCheckingPasswordInputType('text');
-      setCheckingPasswordShowIcon(<GrFormView />);
+  const handleShowVerifyPassword = () => {
+    if (verifyPasswordInputType === 'password') {
+      setVerifyPasswordInputType('text');
+      setVerifyPasswordShowIcon(<GrFormView />);
     } else {
-      setCheckingPasswordInputType('password');
-      setCheckingPasswordShowIcon(<GrFormViewHide />);
+      setVerifyPasswordInputType('password');
+      setVerifyPasswordShowIcon(<GrFormViewHide />);
     }
   };
 
@@ -94,20 +94,20 @@ export default function SignUp() {
   const passwordRegEx = /^(?=.*[!@#$%^&*+=-])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,16}$/;
   // const phonenumberRegEx = /^01([0|1|6|7|8|9])-?(\d{3,4})-?(\d{4})$/;
 
-  const checkEmail = () => {
-    return emailRegEx.test(email) ? false : true;
+  const isCorrectEmail = () => {
+    return emailRegEx.test(email) ? true : false;
   };
-  const checkNickname = () => {
-    return nicknameRegEx.test(nickname) ? false : true;
+  const isCorrectNickname = () => {
+    return nicknameRegEx.test(nickname) ? true : false;
   };
-  const checkPassword = () => {
-    return passwordRegEx.test(password) ? false : true;
+  const isCorrectPassword = () => {
+    return passwordRegEx.test(password) ? true : false;
   };
-  const checkCheckingpassword = () => {
-    return password === checkingpassword && password.length > 4 ? false : true;
+  const isCorrectVerifypassword = () => {
+    return password === verifypassword && password.length > 4 ? true : false;
   };
-  // const checkPhonenumber = () => {
-  //   return phonenumberRegEx.test(phonenumber) ? false : true;
+  // const isCorrectPhonenumber = () => {
+  //   return phonenumberRegEx.test(phonenumber) ? true : false;
   // };
 
   return (
@@ -139,12 +139,12 @@ export default function SignUp() {
                   handleChangeEmail(ev);
                 }}
                 onFocus={() => {
-                  setClickedEmail(true);
+                  setFocusedEmail(true);
                 }}
               ></TextInput>
             </div>
           </div>
-          {checkEmail() && clickedEmail === true && (
+          {!isCorrectEmail() && focusedEmail && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
               <span>이메일 주소를 입력해주세요.</span>
             </div>
@@ -165,12 +165,12 @@ export default function SignUp() {
                   handleChangeNickname(ev);
                 }}
                 onFocus={() => {
-                  setClickedNickname(true);
+                  setFocusedNickname(true);
                 }}
               ></TextInput>
             </div>
           </div>
-          {checkNickname() && clickedNickname === true && (
+          {!isCorrectNickname() && focusedNickname && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
               <span>영어나 숫자, 한글로 2~8자리까지 입력할 수 있습니다.</span>
             </div>
@@ -199,12 +199,12 @@ export default function SignUp() {
                   handleChangePassword(ev);
                 }}
                 onFocus={() => {
-                  setClickedPassword(true);
+                  setFocusedPassword(true);
                 }}
               ></TextInput>
             </div>
           </div>
-          {checkPassword() && clickedPassword === true && (
+          {!isCorrectPassword() && focusedPassword && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
               <span>영소문자, 영대문자, 숫자, 특수문자를 포함해 4~16자리로 입력해주세요.</span>
             </div>
@@ -218,27 +218,27 @@ export default function SignUp() {
             </div>
             <Button
               className='absolute ml-84 mt-2 cursor-pointer p-0.5'
-              onClick={handleShowCheckingPassword}
+              onClick={handleShowVerifyPassword}
             >
               <IconContext.Provider value={{ size: '2rem' }}>
-                <Icon className='sign-up-icon'>{checkingPasswordShowIcon}</Icon>
+                <Icon className='sign-up-icon'>{verifyPasswordShowIcon}</Icon>
               </IconContext.Provider>
             </Button>
             <div className='sign-up-input-wrap'>
               <TextInput
-                type={checkingPasswordInputType}
+                type={verifyPasswordInputType}
                 className='sign-up-input'
                 placeholder='비밀번호 확인'
                 onChange={(ev) => {
-                  handleChangeCheckingpassword(ev);
+                  handleChangeVerifypassword(ev);
                 }}
                 onFocus={() => {
-                  setClickedCheckingpassword(true);
+                  setFocusedVerifypassword(true);
                 }}
               ></TextInput>
             </div>
           </div>
-          {checkCheckingpassword() && clickedCheckingpassword === true && (
+          {!isCorrectVerifypassword() && focusedVerifypassword && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
               <span>비밀번호가 일치하지 않습니다.</span>
             </div>
@@ -259,12 +259,12 @@ export default function SignUp() {
                   handleChangePhonenumber(ev);
                 }}
                 onClick={() => {
-                  setClickedPhonenumber(true);
+                  setFocusedPhonenumber(true);
                 }}
               ></TextInput>
             </div>
           </div>
-          {checkPhonenumber() && clickedPhonenumber === true && (
+          {isCorrectPhonenumber() && focusedPhonenumber === true && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
               <span>전화번호를 입력해 주세요. 하이픈(-)을 포함해서요.</span>
             </div>

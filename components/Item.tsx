@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 type ItemProps = {
   children: string;
-  img?: string;
+  img: string;
   name: string;
   price: string;
   category: string;

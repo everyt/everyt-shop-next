@@ -14,20 +14,20 @@ export default function page() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const [clickedEmail, setClickedEmail] = useState<boolean>(false);
-  const [clickedPassword, setClickedPassword] = useState<boolean>(false);
+  const [focusedEmail, setFocusedEmail] = useState<boolean>(false);
+  const [focusedPassword, setFocusedPassword] = useState<boolean>(false);
 
   const [passwordInputType, setPasswordInputType] = useState<string>('password');
   const [passwordShowIcon, setPasswordShowIcon] = useState<React.ReactNode>(<GrFormViewHide />);
 
-  const checkLogin = () => {
-    checkEmail() && setClickedEmail(true);
-    checkPassword() && setClickedPassword(true);
-    return !checkEmail() && !checkPassword() ? true : false;
+  const isCorrectLogin = () => {
+    !isCorrectEmail() && setFocusedEmail(true);
+    !isCorrectPassword() && setFocusedPassword(true);
+    return isCorrectEmail() && isCorrectPassword() ? true : false;
   };
 
   const Login = () => {
-    checkLogin() &&
+    isCorrectLogin() &&
       axios
         .post('/api/v1/user/login', {
           email: email,
@@ -49,7 +49,7 @@ export default function page() {
   };
 
   const handleShowPassword = () => {
-    if (passwordInputType == 'password') {
+    if (passwordInputType === 'password') {
       setPasswordInputType('text');
       setPasswordShowIcon(<GrFormView />);
     } else {
@@ -60,11 +60,11 @@ export default function page() {
 
   const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
 
-  const checkEmail = () => {
-    return emailRegEx.test(email) ? false : true;
+  const isCorrectEmail = () => {
+    return emailRegEx.test(email) ? true : false;
   };
-  const checkPassword = () => {
-    return password.length > 0 ? false : true;
+  const isCorrectPassword = () => {
+    return password.length > 0 ? true : false;
   };
 
   return (
@@ -95,12 +95,12 @@ export default function page() {
                   handleChangeEmail(ev);
                 }}
                 onFocus={() => {
-                  setClickedEmail(true);
+                  setFocusedEmail(true);
                 }}
               ></TextInput>
             </div>
           </div>
-          {checkEmail() && clickedEmail === true && (
+          {!isCorrectEmail() && focusedEmail && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
               <span>아이디(이메일)는 이메일 형식으로 입력해주세요.</span>
             </div>
@@ -129,12 +129,12 @@ export default function page() {
                   handleChangePassword(ev);
                 }}
                 onFocus={() => {
-                  setClickedPassword(true);
+                  setFocusedPassword(true);
                 }}
               ></TextInput>
             </div>
           </div>
-          {checkPassword() && clickedPassword === true && (
+          {!isCorrectPassword() && focusedPassword && (
             <div className='mb-2 ml-200px text-sm text-red-500'>
               <span>비밀번호를 입력해 주세요.</span>
             </div>
