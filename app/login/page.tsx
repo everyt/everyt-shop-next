@@ -27,18 +27,18 @@ export default function page() {
   };
 
   const Login = () => {
-    isCorrectLogin() &&
-      axios
-        .post('/api/v1/user/login', {
-          email: email,
-          password: password,
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    // isCorrectLogin() &&
+    axios
+      .post('/api/v1/auth', {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleChangeEmail = (ev: ChangeEvent<HTMLInputElement>) => {

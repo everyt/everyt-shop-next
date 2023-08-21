@@ -40,11 +40,10 @@ export default function SignUp() {
   const signUp = () => {
     isCorrectSignUp() &&
       axios
-        .post('/api/v1/user/sign-up', {
+        .post('/api/v1/user/signup', {
           email: email,
           nickname: nickname,
           password: password,
-          authority: 'ROLE_USER',
         })
         .then((response) => {
           console.log(response);
